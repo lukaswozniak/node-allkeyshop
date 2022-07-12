@@ -9,7 +9,7 @@ test('getProduct should return valid data for valid productId', async () => {
     expect(res.success).toBe(true)
     expect(res.offers.length).toBeGreaterThan(0)
     const offer = res.offers[0]
-    const currency = offer.price.usd ? "usd" : "eur"
+    const currency = "eur"
     const price = offer.price[currency]
     expect(price).toBeDefined()
     expect(typeof price.price).toBe("number")

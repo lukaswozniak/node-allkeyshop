@@ -1,6 +1,6 @@
 {
   "name": "allkeyshop",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Easy access to www.allkeyshop.com data",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,8 +18,7 @@
   },
   "keywords": [
     "allkeyshop.com",
-    "www.allkeyshop.com",
-    "cheapdigitaldownload.com"
+    "www.allkeyshop.com"
   ],
   "author": "lukaswozniak",
   "license": "MIT",

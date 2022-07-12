@@ -56,23 +56,7 @@ interface ProductRes {
     regions: { [key: string]: Region }
 }
 
-async function getProductFromCDG(productId: number | string): Promise<ProductRes> {
-    const { data } = await axios.get(`https://cheapdigitaldownload.com/wp-admin/admin-ajax.php?action=get_offers&product=${productId}&currency=usd`)
-    return data
-}
-
-async function getProductFromAKS(productId: number | string): Promise<ProductRes> {
+export default async function getProduct(productId: number | string): Promise<ProductRes> {
     const { data } = await axios.get(`https://www.allkeyshop.com/blog/wp-admin/admin-ajax.php?action=get_offers&product=${productId}&currency=eur`)
     return data
-}
-
-export default async function getProduct(productId: number | string): Promise<ProductRes> {
-    const [ aks, cdg ] = await Promise.all([getProductFromAKS(productId), getProductFromCDG(productId)])
-    return {
-        success: aks.success && cdg.success,
-        offers: aks.offers.concat(cdg.offers),
-        merchants: {...cdg.merchants, ...aks.merchants},
-        editions: {...cdg.editions, ...aks.editions},
-        regions: {...cdg.regions, ...aks.regions},
-    }
 }

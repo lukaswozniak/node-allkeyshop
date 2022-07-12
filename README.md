@@ -1,6 +1,6 @@
 # node-allkeyshop
 
-Node.js scraper for [allkeyshop](https://www.allkeyshop.com) and [cheapdigitaldownload](https://cheapdigitaldownload.com/)
+Node.js scraper for [allkeyshop](https://www.allkeyshop.com)
 
 ### Installation
 

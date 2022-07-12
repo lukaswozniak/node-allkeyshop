@@ -26,24 +26,8 @@ async function scrapeSinglePage(url: string): Promise<GiftCardProduct[]> {
     }).get()
 }
 
-async function getGiftCardProductsFromAKS(): Promise<GiftCardProduct[]> {
+export default async function getGiftCardProducts(): Promise<GiftCardProduct[]> {
     const pages = ['https://www.allkeyshop.com/blog/catalogue/category-giftcards/', 'https://www.allkeyshop.com/blog/catalogue/category-giftcards/page-2/', 'https://www.allkeyshop.com/blog/catalogue/category-giftcards/page-3/', 'https://www.allkeyshop.com/blog/catalogue/category-giftcards/page-4/']
     const scrapedPages = await Promise.all(pages.map(scrapeSinglePage))
     return scrapedPages.flat()
-}
-
-async function getGiftCardProductsFromCDG(): Promise<GiftCardProduct[]> {
-    const pages = ['https://cheapdigitaldownload.com/catalog/category-giftcards/', 'https://cheapdigitaldownload.com/catalog/category-giftcards/page-2/']
-    const scrapedPages = await Promise.all(pages.map(scrapeSinglePage))
-    return scrapedPages.flat()
-}
-
-export default async function getGiftCardProducts(): Promise<GiftCardProduct[]> {
-    const [ aks, cdg ] = await Promise.all([getGiftCardProductsFromAKS(), getGiftCardProductsFromCDG()])
-    for (const product of cdg) {
-        if (!aks.find((product2) => product2.productId === product.productId)) {
-            aks.push(product)
-        }
-    }
-    return aks
 }
