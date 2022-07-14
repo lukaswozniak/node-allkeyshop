@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-interface Offer {
+export interface Offer {
     id: number
     affiliateUrl: string
     isActive: boolean
@@ -24,7 +24,7 @@ interface Offer {
     platform: string
 }
 
-interface Merchant {
+export interface Merchant {
     id: string
     name: string
     aggregateRating: {
@@ -37,18 +37,18 @@ interface Merchant {
     reviewUrl: string
 }
 
-interface Edition {
+export interface Edition {
     id: string
     name: string
 }
 
-interface Region {
+export interface Region {
     id: string
     name: string
     filterName: string
 }
 
-interface ProductRes {
+export interface ProductRes {
     success: boolean
     offers: Offer[]
     merchants: { [key: string]: Merchant }

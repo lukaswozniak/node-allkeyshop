@@ -1,14 +1,14 @@
 import axios from "axios";
 import * as cheerio from "cheerio"
 
-interface GiftCardProduct {
+export interface GiftcardProduct {
     link: string
     imageUrl: string
     title: string
     productId: string
 }
 
-async function scrapeSinglePage(url: string): Promise<GiftCardProduct[]> {
+async function scrapeSinglePage(url: string): Promise<GiftcardProduct[]> {
     const { data } = await axios.get(url)
     const $ = cheerio.load(data, null, false)
     const searchResults = $('.search-results')
@@ -26,7 +26,7 @@ async function scrapeSinglePage(url: string): Promise<GiftCardProduct[]> {
     }).get()
 }
 
-export default async function getGiftCardProducts(): Promise<GiftCardProduct[]> {
+export default async function getGiftcardProducts(): Promise<GiftcardProduct[]> {
     const pages = ['https://www.allkeyshop.com/blog/catalogue/category-giftcards/', 'https://www.allkeyshop.com/blog/catalogue/category-giftcards/page-2/', 'https://www.allkeyshop.com/blog/catalogue/category-giftcards/page-3/', 'https://www.allkeyshop.com/blog/catalogue/category-giftcards/page-4/']
     const scrapedPages = await Promise.all(pages.map(scrapeSinglePage))
     return scrapedPages.flat()
