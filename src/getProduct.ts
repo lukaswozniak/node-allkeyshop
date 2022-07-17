@@ -6,7 +6,7 @@ export interface Offer {
     isActive: boolean
     merchant: string
     price: {
-        usd: {
+        eur: {
             bestCoupon: {
                 code: string
                 discountValue: string
